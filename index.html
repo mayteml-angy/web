@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Plato del Buen Comer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+        .ventana {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 1em;
+            text-align: center;
+            display: none; /* Ocultar ventanas por defecto */
+            font-family: 'Verdana', sans-serif;
+        }
+        .ventana.active {
+            display: block; /* Mostrar solo la ventana activa */
+        }
+        .ventana:nth-of-type(1) { background: #e0f7fa; } /* Portada */
+        .ventana:nth-of-type(2) { background: #ffebee; } /* Cereales y Tubérculos */
+        .ventana:nth-of-type(3) { background: #fffde7; } /* Frutas */
+        .ventana:nth-of-type(4) { background: #e8f5e9; } /* Verduras */
+        .ventana:nth-of-type(5) { background: #fbe9e7; } /* Leguminosas */
+        .ventana:nth-of-type(6) { background: #e3f2fd; } /* Proteínas Animales */
+        .ventana:nth-of-type(7) { background: #f3e5f5; } /* Productos Lácteos */
+        .ventana:nth-of-type(8) { background: #e0e0e0; } /* Aceites y Grasas */
+        .ventana:nth-of-type(9) { background: #ffccbc; } /* Agua */
+        .ventana:nth-of-type(10) { background: #dcedc8; } /* Frutos Secos */
+        .ventana:nth-of-type(11) { background: #c5e1a5; } /* Semillas */
+        .ventana:nth-of-type(12) { background: #f8bbd0; } /* Especias y Hierbas */
+        .ventana:nth-of-type(13) { background: #e1bee7; } /* Bebidas Saludables */
+        .ventana:nth-of-type(14) { background: #d1c4e9; } /* Panes Integrales */
+        .ventana:nth-of-type(15) { background: #cfd8dc; } /* Comida Casera */
+        .ventana:nth-of-type(16) { background: #e57373; color: #fff; } /* Moderación en Azúcares */
+        
+        .nav-buttons {
+            text-align: center;
+            margin-top: 1em;
+        }
+        .nav-buttons button {
+            padding: 0.5em 1em;
+            font-size: 16px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #aaa;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h2 {
+            font-family: 'Georgia', serif;
+            color: #333;
+        }
+        h3 {
+            font-family: 'Verdana', sans-serif;
+            color: #555;
+        }
+        ul, ol {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        ul {
+            list-style-type: disc;
+        }
+        ol {
+            list-style-type: decimal;
+        }
+        .separator {
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            max-width: 100%;
+            height: auto;
+        }
+        .image-container p {
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        marquee {
+            font-size: 18px;
+            color: #333;
+            background-color: #e0f7fa;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>El Plato del Buen Comer</h1>
+    </header>
+    
+    <div class="container">
+        <div id="ventana1" class="ventana active">
+            <h2>Datos Personales</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre: "Angela Mayte Monroy Lopez"</label>
+                </div>
+                <div class="form-group">
+                    <label for="plantel">Nombre del Plantel: "Cetis   054"</label>
+                </div>
+                <div class="form-group">
+                    <label for="submodulo">Submódulo: "construye paginas web"</label>
+                </div>
+                <div class="form-group">
+                    <label for="turno">Turno: "Vespertino"</label>
+                </div>
+            </form>
+        </div>
+        
+        <div id="ventana2" class="ventana">
+            <h3>Categoría 1: Cereales y Tubérculos</h3>
+            <p>Incluye alimentos como arroz, maíz, trigo y papas, que son fuentes principales de carbohidratos.</p>
+            <ul>
+                <li>Arroz</li>
+                <li>Maíz</li>
+                <li>Trigo</li>
+                <li>Papas</li>
+            </ul>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana3" class="ventana">
+            <h3>Categoría 2: Frutas</h3>
+            <p>Las frutas como manzanas, plátanos y naranjas proporcionan vitaminas y fibra.</p>
+            <ol>
+                <li>Manzanas</li>
+                <li>Plátanos</li>
+                <li>Naranjas</li>
+            </ol>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana4" class="ventana">
+            <h3>Categoría 3: Verduras</h3>
+            <p>Las verduras como zanahorias, espinacas y brócoli son esenciales para una dieta balanceada.</p>
+            <ul>
+                <li>Zanahorias</li>
+                <li>Espinacas</li>
+                <li>Brócoli</li>
+            </ul>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana5" class="ventana">
+            <h3>Categoría 4: Leguminosas</h3>
+            <p>Incluye frijoles, lentejas y garbanzos, que son ricos en proteínas y fibra.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leguminosa</th>
+                        <th>Beneficios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frijoles</td>
+                        <td>Ricos en proteínas y fibra.</td>
+                    </tr>
+                    <tr>
+                        <td>Lentejas</td>
+                        <td>Buen aporte de hierro y proteínas.</td>
+                    </tr>
+                    <tr>
+                        <td>Garbanzos</td>
+                        <td>Fuente de proteínas y minerales.</td>
+                    </tr
+ </tbody>
+            </table>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana6" class="ventana">
+            <h3>Categoría 5: Proteínas Animales</h3>
+            <p>Carnes, pescados y huevos son fuentes importantes de proteínas y nutrientes.</p>
+            <div class="image-container">
+                <img src="proteinas-animales.jpg" alt="Proteínas Animales">
+                <p>Ejemplos de proteínas animales: carne, pescado y huevos.</p>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana7" class="ventana">
+            <h3>Categoría 6: Productos Lácteos</h3>
+            <p>Leche, yogurt y quesos proporcionan calcio y proteínas.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto Lácteo</th>
+                        <th>Beneficios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Leche</td>
+                        <td>Fuente de calcio y vitaminas.</td>
+                    </tr>
+                    <tr>
+                        <td>Yogurt</td>
+                        <td>Beneficia la digestión.</td>
+                    </tr>
+                    <tr>
+                        <td>Queso</td>
+                        <td>Rico en proteínas y calcio.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana8" class="ventana">
+            <h3>Categoría 7: Aceites y Grasas</h3>
+            <p>Usa aceites saludables como el de oliva y evita las grasas saturadas.</p>
+            <ul>
+                <li>Aceite de oliva</li>
+                <li>Aceite de aguacate</li>
+                <li>Grasas saturadas a evitar</li>
+            </ul>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana9" class="ventana">
+            <h3>Categoría 8: Agua</h3>
+            <p>El agua es fundamental para mantener la hidratación y el buen funcionamiento del cuerpo.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Importancia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hidratación</td>
+                        <td>Previene la deshidratación.</td>
+                    </tr>
+                    <tr>
+                        <td>Función Corporal</td>
+                        <td>Facilita las funciones biológicas.</td>
+                    </tr>
+                    <tr>
+                        <td>Digestión</td>
+                        <td>Ayuda en la digestión de alimentos.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana10" class="ventana">
+            <h3>Categoría 9: Frutos Secos</h3>
+            <p>Almendras, nueces y avellanas son ricos en grasas saludables y proteínas.</p>
+            <ul>
+                <li>Almendras</li>
+                <li>Nueces</li>
+                <li>Avellanas</li>
+            </ul>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana11" class="ventana">
+            <h3>Categoría 10: Semillas</h3>
+            <p>Semillas de chía, linaza y girasol aportan omega-3 y fibra.</p>
+            <div class="image-container">
+                <img src="semillas.jpg" alt="Semillas">
+                <p>Semillas de chía, linaza y girasol.</p>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana12" class="ventana">
+            <h3>Categoría 11: Especias y Hierbas</h3>
+            <p>Especias como el cúrcuma y hierbas como el perejil añaden sabor y beneficios nutricionales.</p>
+            <ol>
+                <li>Cúrcuma</li>
+                <li>Perejil</li>
+                <li>Romero</li>
+            </ol>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana13" class="ventana">
+            <h3>Categoría 12: Bebidas Saludables</h3>
+            <p>Infusiones y jugos naturales sin azúcar son opciones saludables.</p>
+            <marquee>¡Bebe agua y jugos naturales para una vida saludable!</marquee>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana14" class="ventana">
+            <h3>Categoría 13: Panes Integrales</h3>
+            <p>Opta por panes integrales que contienen más fibra y nutrientes.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Pan</th>
+                        <th>Beneficios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Panes integrales</td>
+                        <td>Más fibra y nutrientes.</td>
+                    </tr>
+                    <tr>
+                        <td>Panes de centeno</td>
+                        <td>Mejora la digestión.</td>
+                    </tr>
+                    <tr>
+                        <td>Panes de avena</td>
+                        <td>Fuente de minerales y vitaminas.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana15" class="ventana">
+            <h3>Categoría 14: Comida Casera</h3>
+            <p>Preparar tus comidas en casa te ayuda a controlar los ingredientes y las porciones.</p>
+            <div class="image-container">
+                <img src="comida-casera.jpg" alt="Comida Casera">
+                <p>Comida casera, más saludable y controlada.</p>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div id="ventana16" class="ventana">
+            <h3>Categoría 15: Moderación en Azúcares</h3>
+            <p>Limita el consumo de azúcares añadidos para mantener una dieta equilibrada y saludable.</p>
+            <p>Para más información, consulta <a href="mailto:tu.email@example.com">nuestro correo electrónico</a>.</p>
+            <div class="separator"></div>
+        </div>
+
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="navigate(-1)">Anterior</button>
+            <button id="nextBtn" onclick="navigate(1)">Siguiente</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 El Plato del Buen Comer</p>
+        <p>Visita nuestras referencias: <a href="https://www.ejemplo.com" target="_blank">Referencia 1</a>, <a href="https://www.ejemplo2.com" target="_blank">Referencia 2</a>.</p>
+        <p>Contacta a nuestro equipo: <a href="mailto:angela@example.com">Angela Mayte Monroy Lopez</a></p>
+    </footer>
+
+    <script>
+        let currentIndex = 1;
+        const totalVentanas = 16;
+
+        function showWindow(index) {
+            for (let i = 1; i <= totalVentanas; i++) {
+                document.getElementById('ventana' + i).classList.remove('active');
+            }
+            document.getElementById('ventana' + index).classList.add('active');
+        }
+
+        function navigate(step) {
+            currentIndex += step;
+            if (currentIndex < 1) currentIndex = 1;
+            if (currentIndex > totalVentanas) currentIndex = totalVentanas;
+            showWindow(currentIndex);
+            updateButtons();
+        }
+
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = currentIndex === 1;
+            document.getElementById('nextBtn').disabled = currentIndex === totalVentanas;
+        }
+
+        showWindow(currentIndex);
+        updateButtons();
+    </script>
+</body>
+</html>
